@@ -1,59 +1,94 @@
-# React + TypeScript + Vite
+# Today's Weather
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive web application that allows users to check the current weather conditions for any location around the world. Built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+![Today's Weather App](https://openweathermap.org/img/wn/02d@4x.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react)
-  uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc)
-  uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Weather Search**: Search for weather information by city and country
+- **Current Weather Display**: View detailed current weather information including temperature, feels like temperature, humidity, and pressure
+- **Search History**: Keep track of your recent searches (up to 20) and easily search for them again
+- **Dark/Light Mode**: Toggle between dark and light themes for comfortable viewing in any environment
+- **Responsive Design**: Works seamlessly on both desktop and mobile devices
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technologies Used
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+- **React 19**: For building the user interface
+- **TypeScript**: For type safety and better developer experience
+- **Vite**: For fast development and optimized production builds
+- **Tailwind CSS**: For styling and responsive design
+- **Context API**: For state management
+- **OpenWeatherMap API**: For weather data
+- **Local Storage**: For persisting search history
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/todays_weather.git
+   cd todays_weather
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+# or
+yarn build
 ```
 
-You can also
-install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x)
-and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom)
-for React-specific lint rules:
+To preview the production build:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
+```bash
+npm run preview
+# or
+yarn preview
 ```
+
+## Project Structure
+
+- `src/components`: Reusable UI components
+- `src/features`: Feature-specific components
+  - `current-weather-display`: Components for displaying current weather
+  - `search-history`: Components for managing and displaying search history
+  - `weather-search`: Components for searching weather by location
+- `src/contexts`: React contexts for state management
+- `src/hooks`: Custom React hooks
+- `src/lib`: Utility functions and API clients
+- `src/common`: Common constants and error types
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- [OpenWeatherMap](https://openweathermap.org/) for providing the weather data API
+- [Tailwind CSS](https://tailwindcss.com/) for the styling framework
+- [Lucide React](https://lucide.dev/) for the beautiful icons
