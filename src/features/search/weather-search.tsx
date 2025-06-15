@@ -42,11 +42,23 @@ const WeatherSearch = () => {
           type='text'
           id='city'
           placeholder='eg. Singapore'
-          onChange={(e) => setCity(e.target.value)}
+          onChange={(e) => {
+            setCountry('');
+            setCity(e.target.value);
+          }}
           value={city}
-          className={errorMessage ? 'border border-red-600' : ''}
+          className={
+            errorMessage
+              ? 'border border-destructive focus:border-destructive focus-visible:ring-destructive/20 focus-visible:ring-[3px] dark:focus-visible:ring-destructive/40'
+              : ''
+          }
+          onKeyDown={async (e) => {
+            if (e.key === 'Enter' && city) {
+              await handleSearch();
+            }
+          }}
         />
-        <p className='text-red-600 text-sm'>{errorMessage ?? <br></br>}</p>
+        <p className='text-destructive text-sm'>{errorMessage ?? <br></br>}</p>
       </div>
       <div className='grid w-full md:w-auto md:max-w-sm items-center gap-1'>
         <Label htmlFor='country'>Country</Label>
