@@ -1,4 +1,9 @@
 {
+  "types": [
+    "node",
+    "jest",
+    "@testing-library/jest-dom"
+  ],
   "files": [],
   "references": [
     {
@@ -14,6 +19,9 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "types": [
+      "@testing-library/jest-dom"
+    ]
   }
 }
