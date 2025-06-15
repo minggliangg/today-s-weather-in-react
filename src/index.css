@@ -87,6 +87,15 @@ body {
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
+    background-image: url('./assets/bg-light.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.dark body {
+    background-image: url('./assets/bg-dark.png');
 }
 
 h1 {

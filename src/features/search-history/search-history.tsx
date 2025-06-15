@@ -7,14 +7,18 @@ import {
   CardTitle,
 } from '@/components/ui/card.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { Search, Trash } from 'lucide-react';
+import { Bomb, Search, Trash } from 'lucide-react';
 import { useSearchHistoryContext } from '@/hooks/use-search-history-context.ts';
 import { epochToDateLocaleString } from '@/lib/utils.ts';
 import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
 
 export const SearchHistory = () => {
-  const { searchHistory, clearSearchHistory, removeWeatherResult, searchAgain } =
-    useSearchHistoryContext();
+  const {
+    searchHistory,
+    clearSearchHistory,
+    removeWeatherResult,
+    searchAgain,
+  } = useSearchHistoryContext();
   const { isLoading } = useCurrentWeatherContext();
 
   return (
@@ -30,7 +34,7 @@ export const SearchHistory = () => {
             title='Clear all'
             disabled={searchHistory.length === 0}
           >
-            <Trash />
+            <Bomb />
           </Button>
         </CardAction>
       </CardHeader>

@@ -47,11 +47,11 @@ const WeatherSearch = () => {
             setCity(e.target.value);
           }}
           value={city}
-          className={
+          className={`${
             errorMessage
               ? 'border border-destructive focus:border-destructive focus-visible:ring-destructive/20 focus-visible:ring-[3px] dark:focus-visible:ring-destructive/40'
-              : ''
-          }
+              : 'focus-visible:ring-foreground/50 focus-visible:ring-[2px]'
+          }`}
           onKeyDown={async (e) => {
             if (e.key === 'Enter' && city) {
               await handleSearch();

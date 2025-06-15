@@ -8,9 +8,11 @@ import { CurrentWeatherProvider } from '@/contexts/current-weather-provider.tsx'
 import { AppConstantsProvider } from '@/contexts/app-constants-provider.tsx';
 import { Toaster } from '@/components/ui/sonner.tsx';
 import { SearchHistoryProvider } from '@/contexts/search-history-provider.tsx';
+import { ThemeProvider } from '@/components/theme-provider.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <ThemeProvider defaultTheme='system' storageKey='vite-ui-theme'>
     <Toaster />
     <AppConstantsProvider>
       <CurrentWeatherProvider>
@@ -19,5 +21,6 @@ createRoot(document.getElementById('root')!).render(
         </SearchHistoryProvider>
       </CurrentWeatherProvider>
     </AppConstantsProvider>
+    </ThemeProvider>
   </StrictMode>,
 );
