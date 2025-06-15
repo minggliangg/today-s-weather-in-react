@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AppConstantsContext } from '@/contexts/app-constants-context.ts';
 
-export const useAppConstantsContext = () => {
+export const useAppConstants = () => {
   const context = useContext(AppConstantsContext);
   if (context === undefined) {
     throw new Error(

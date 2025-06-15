@@ -8,9 +8,10 @@ import {
 } from '@/components/ui/card.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Bomb, Search, Trash } from 'lucide-react';
-import { useSearchHistoryContext } from '@/hooks/use-search-history-context.ts';
+import { useSearchHistory } from '@/hooks/use-search-history.ts';
 import { epochToDateLocaleString } from '@/lib/utils.ts';
-import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
+import { useCurrentWeather } from '@/hooks/use-current-weather.ts';
+import { DEGREE_CELSIUS } from '@/common/constants.ts';
 
 export const SearchHistory = () => {
   const {
@@ -18,8 +19,8 @@ export const SearchHistory = () => {
     clearSearchHistory,
     removeWeatherResult,
     searchAgain,
-  } = useSearchHistoryContext();
-  const { isLoading } = useCurrentWeatherContext();
+  } = useSearchHistory();
+  const { isLoading } = useCurrentWeather();
 
   return (
     <Card className={'w-full'}>
@@ -51,7 +52,9 @@ export const SearchHistory = () => {
                 className='flex items-center justify-between p-2 hover:bg-muted rounded-md'
               >
                 <span className='text-xs text-muted-foreground'>
-                  #{index + 1} {entry.city}
+                  #{index + 1} {entry.city}, {entry.country} -{' '}
+                  {entry.temp.toFixed()}
+                  {DEGREE_CELSIUS}
                 </span>
                 <span className='flex gap-2 items-center'>
                   <span className='text-xs'>

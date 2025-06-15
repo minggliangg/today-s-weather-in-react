@@ -4,13 +4,13 @@ import { Button } from '@/components/ui/button.tsx';
 import { Delete, Search } from 'lucide-react';
 import { useWeatherSearch } from '@/features/weather-search/hooks/use-weather-search.ts';
 import { CountrySelector } from '@/features/weather-search/components/country-selector.tsx';
-import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
+import { useCurrentWeather } from '@/hooks/use-current-weather.ts';
 import { useEffect } from 'react';
-import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
+import { useAppConstants } from '@/hooks/use-app-constants.ts';
 
 const WeatherSearch = () => {
-  const { getLabelFromCountryCode } = useAppConstantsContext();
-  const { currentWeatherData } = useCurrentWeatherContext();
+  const { getLabelFromCountryCode } = useAppConstants();
+  const { currentWeatherData } = useCurrentWeather();
   const {
     city,
     setCity,

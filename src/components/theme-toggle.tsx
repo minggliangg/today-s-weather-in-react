@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { useTheme } from '@/components/theme-provider';
-import { SunIcon, MoonIcon } from 'lucide-react';
+import { MoonIcon, SunIcon } from 'lucide-react';
+import { useTheme } from '@/hooks/use-theme.ts';
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -11,15 +11,15 @@ export function ThemeToggle() {
 
   return (
     <Button
-      variant="ghost"
-      size="icon"
+      variant='ghost'
+      size='icon'
       onClick={toggleTheme}
-      aria-label="Toggle theme"
+      aria-label='Toggle theme'
     >
       {theme === 'light' ? (
-        <MoonIcon className="h-5 w-5" />
+        <MoonIcon className='h-5 w-5' />
       ) : (
-        <SunIcon className="h-5 w-5" />
+        <SunIcon className='h-5 w-5' />
       )}
     </Button>
   );

@@ -5,15 +5,18 @@ import {
   type SearchHistoryContextType,
 } from '@/contexts/search_history-context.ts';
 import { LocalstorageClient } from '@/lib/localstorage-client/localstorage-client.ts';
-import { getCoordinatesByLocationName, getWeatherInfo } from '@/lib/api-client/api.ts';
-import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
+import {
+  getCoordinatesByLocationName,
+  getWeatherInfo,
+} from '@/lib/api-client/api.ts';
+import { useCurrentWeather } from '@/hooks/use-current-weather.ts';
 import { toast } from 'sonner';
 import { InvalidLocationError, NetworkError } from '@/common/custom-errors.ts';
 
 const SEARCH_HISTORY_KEY = 'search-history';
 
 export const SearchHistoryProvider = ({ children }: PropsWithChildren) => {
-  const { setCurrentWeatherData, setIsLoading } = useCurrentWeatherContext();
+  const { setCurrentWeatherData, setIsLoading } = useCurrentWeather();
 
   const [searchHistory, setSearchHistory] = useState<WeatherResult[]>(
     () =>

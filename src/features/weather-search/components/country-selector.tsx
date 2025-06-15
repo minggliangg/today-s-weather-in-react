@@ -23,7 +23,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer.tsx';
-import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
+import { useAppConstants } from '@/hooks/use-app-constants.ts';
 
 interface CountrySelectorProps {
   open: boolean;
@@ -92,7 +92,7 @@ export const CountrySelector = ({
   setSelectedCountry,
   id,
 }: CountrySelectorProps) => {
-  const { countriesForComboBox } = useAppConstantsContext();
+  const { countriesForComboBox } = useAppConstants();
   const isDesktop = useMediaQuery('(min-width: 768px)');
   if (isDesktop) {
     return (

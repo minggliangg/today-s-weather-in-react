@@ -1,4 +1,5 @@
-import { createContext, type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
+import { ThemeProviderContext } from '@/contexts/theme-context.tsx';
 
 type Theme = 'dark' | 'light' | 'system';
 
@@ -7,19 +8,6 @@ type ThemeProviderProps = {
   defaultTheme?: Theme;
   storageKey?: string;
 };
-
-type ThemeProviderState = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-};
-
-const initialState: ThemeProviderState = {
-  theme: 'system',
-  setTheme: () => null,
-};
-
-export const ThemeProviderContext =
-  createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
   children,
@@ -63,6 +51,3 @@ export function ThemeProvider({
     </ThemeProviderContext.Provider>
   );
 }
-
-// Re-export useTheme from separate file for Fast Refresh compatibility
-export { useTheme } from './use-theme';

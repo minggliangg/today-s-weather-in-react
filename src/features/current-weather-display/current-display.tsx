@@ -1,4 +1,4 @@
-import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
+import { useCurrentWeather } from '@/hooks/use-current-weather.ts';
 import {
   Card,
   CardContent,
@@ -6,9 +6,8 @@ import {
   CardTitle,
 } from '@/components/ui/card.tsx';
 import { epochToDateLocaleString, toTitleCase } from '@/lib/utils.ts';
-import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
-
-const units = '°C';
+import { useAppConstants } from '@/hooks/use-app-constants.ts';
+import { DEGREE_CELSIUS } from '@/common/constants.ts';
 
 export const CurrentDisplay = () => {
   return (
@@ -22,8 +21,8 @@ export const CurrentDisplay = () => {
 };
 
 const CurrentDisplayContent = () => {
-  const { getRandomWeatherCondition } = useAppConstantsContext();
-  const { currentWeatherData, isLoading } = useCurrentWeatherContext();
+  const { getRandomWeatherCondition } = useAppConstants();
+  const { currentWeatherData, isLoading } = useCurrentWeather();
 
   const { icon, description: randomDescription } = getRandomWeatherCondition();
 
@@ -76,11 +75,11 @@ const CurrentDisplayContent = () => {
         <div className='flex-grow flex-col gap-1 items-center'>
           <p className='text-3xl'>
             {temp.toFixed()}
-            {units}
+            {DEGREE_CELSIUS}
           </p>
           <p className='italic text-sm text-gray-500'>
             Feels like: {feels_like.toFixed()}
-            {units}
+            {DEGREE_CELSIUS}
           </p>
           <p>
             {city}, {country}
@@ -96,8 +95,8 @@ const CurrentDisplayContent = () => {
       </div>
       <p className='text-gray-500 text-center'>
         High: {temp_max.toFixed()}
-        {units} | Low: {temp_min}
-        {units} | {humidity}% | {pressure} hPa
+        {DEGREE_CELSIUS} | Low: {temp_min.toFixed()}
+        {DEGREE_CELSIUS} | {humidity}% | {pressure} hPa
       </p>
       <p className='text-gray-400 text-end text-sm mt-2'>
         Last updated: {epochToDateLocaleString(timestamp)}

@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import { getCoordinatesByLocationName, getWeatherInfo } from '@/lib/api-client/api.ts';
-import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
-import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
+import {
+  getCoordinatesByLocationName,
+  getWeatherInfo,
+} from '@/lib/api-client/api.ts';
+import { useCurrentWeather } from '@/hooks/use-current-weather.ts';
+import { useAppConstants } from '@/hooks/use-app-constants.ts';
 import { InvalidLocationError, NetworkError } from '@/common/custom-errors.ts';
 import { toast } from 'sonner';
-import { useSearchHistoryContext } from '@/hooks/use-search-history-context.ts';
+import { useSearchHistory } from '@/hooks/use-search-history.ts';
 
 export const useWeatherSearch = () => {
-  const { getCountryCodeFromLabel } = useAppConstantsContext();
-  const { setIsLoading, setCurrentWeatherData } = useCurrentWeatherContext();
-  const { addWeatherResult } = useSearchHistoryContext();
+  const { getCountryCodeFromLabel } = useAppConstants();
+  const { setIsLoading, setCurrentWeatherData } = useCurrentWeather();
+  const { addWeatherResult } = useSearchHistory();
 
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
