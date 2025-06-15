@@ -1,7 +1,7 @@
 import { Label } from '@/components/ui/label.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { Search, Trash } from 'lucide-react';
+import { Delete, Search } from 'lucide-react';
 import { useWeatherSearch } from '@/features/weather-search/hooks/use-weather-search.ts';
 import { CountrySelector } from '@/features/weather-search/components/country-selector.tsx';
 import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
@@ -29,7 +29,7 @@ const WeatherSearch = () => {
       setCity(currentWeatherData.city);
       setCountry(getLabelFromCountryCode(currentWeatherData.country));
     }
-  }, [currentWeatherData]);
+  }, [currentWeatherData, getLabelFromCountryCode, setCity, setCountry]);
 
   const errorMessage = error?.message;
 
@@ -80,6 +80,7 @@ const WeatherSearch = () => {
             size='icon'
             variant='outline'
             disabled={isLoading || !city}
+            title='Search'
           >
             <Search />
           </Button>
@@ -88,8 +89,9 @@ const WeatherSearch = () => {
             size='icon'
             variant='destructive'
             disabled={isLoading || (!country && !city)}
+            title='Clear search'
           >
-            <Trash />
+            <Delete />
           </Button>
         </div>
         <p className='text-sm'>

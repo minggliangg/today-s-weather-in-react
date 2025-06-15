@@ -5,6 +5,7 @@ import type {
   WeatherResult,
 } from '@/lib/api-client/interfaces.ts';
 import { ApiClient } from '@/lib/api-client/api-client.ts';
+import { InvalidLocationError } from '@/common/custom-errors.ts';
 
 export const getWeatherInfo = async ({
   lon,
@@ -52,13 +53,13 @@ export const getCoordinatesByLocationName = async ({
   const response = await ApiClient.get<Array<CoordinatesResponse>>(
     'geo/1.0/direct',
     new Map([
-      ['q', `${city},,${countryCode}`],
+      ['q', `${city},,${countryCode ?? ''}`],
       ['limit', '1'],
     ]),
   );
 
   if (response.length === 0) {
-    throw new Error('Invalid location entered');
+    throw new InvalidLocationError('Invalid location entered');
   }
 
   return {

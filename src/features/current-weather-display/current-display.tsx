@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card.tsx';
-import { toTitleCase } from '@/lib/utils.ts';
+import { epochToDateLocaleString, toTitleCase } from '@/lib/utils.ts';
 import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
 
 const units = '°C';
@@ -33,19 +33,22 @@ const CurrentDisplayContent = () => {
         <div className='flex flex-row items-center gap-2 mb-4'>
           <div className='flex-grow flex-col gap-1 items-center'>
             <p className='text-3xl'>Welcome!</p>
+            <p className='italic text-sm text-gray-500 '>
+              Search for a location <br /> to see the weather.
+            </p>
           </div>
           <div className='flex flex-col gap-1 items-center'>
             <img
               src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
               alt={randomDescription}
             />
-            <p className='text-gray-400'>
+            <p className='text-gray-400 text-center'>
               Somewhere there are {randomDescription}
             </p>
           </div>
         </div>
         <p className='text-gray-500 text-center'>
-          Search for a location to see the weather.
+          <br />
         </p>
         <p className='text-gray-400 text-end text-sm mt-2'>
           Powered by OpenWeatherMap
@@ -97,7 +100,7 @@ const CurrentDisplayContent = () => {
         {units} | {humidity}% | {pressure} hPa
       </p>
       <p className='text-gray-400 text-end text-sm mt-2'>
-        Last updated: {new Date(timestamp * 1000).toLocaleString()}
+        Last updated: {epochToDateLocaleString(timestamp)}
       </p>
     </CardContent>
   );

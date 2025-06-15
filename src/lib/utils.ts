@@ -11,3 +11,7 @@ export function toTitleCase(str: string): string {
     (txt) => txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase(),
   );
 }
+
+export const epochToDateLocaleString = (epoch: number) => {
+  return new Date(epoch * 1000).toLocaleString();
+};

@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import {
-  getCoordinatesByLocationName,
-  getWeatherInfo,
-} from '@/lib/api-client/api.ts';
+import { getCoordinatesByLocationName, getWeatherInfo } from '@/lib/api-client/api.ts';
 import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
 import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
+import { InvalidLocationError, NetworkError } from '@/common/custom-errors.ts';
+import { toast } from 'sonner';
+import { useSearchHistoryContext } from '@/hooks/use-search-history-context.ts';
 
 export const useWeatherSearch = () => {
   const { getCountryCodeFromLabel } = useAppConstantsContext();
   const { setIsLoading, setCurrentWeatherData } = useCurrentWeatherContext();
-  // Form state
+  const { addWeatherResult } = useSearchHistoryContext();
+
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [open, setOpen] = useState(false);
@@ -33,12 +34,16 @@ export const useWeatherSearch = () => {
       });
 
       const weatherResult = await getWeatherInfo({ lon, lat });
-
       setCurrentWeatherData(weatherResult);
+      addWeatherResult(weatherResult);
     } catch (err) {
-      setError(
-        err instanceof Error ? err : new Error('An unknown error occurred'),
-      );
+      if (err instanceof NetworkError) {
+        toast.error(`Network error: ${err.statusCode} ${err.message}`);
+      } else if (err instanceof InvalidLocationError) {
+        setError(err);
+      } else if (err instanceof Error) {
+        toast.error(`An unknown error occurred: ${err.message}`);
+      }
     } finally {
       setIsLoading(false);
       setIsPerformingSearch(false);

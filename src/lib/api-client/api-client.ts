@@ -1,3 +1,5 @@
+import { NetworkError } from '@/common/custom-errors.ts';
+
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 const ENVIRONMENT = import.meta.env.MODE;
 const BASE_URL =
@@ -31,6 +33,10 @@ export const ApiClient = {
       },
     });
 
-    return await response.json();
+    if (!response.ok) {
+      throw new NetworkError(response.statusText, response.status);
+    } else {
+      return await response.json();
+    }
   },
 };
