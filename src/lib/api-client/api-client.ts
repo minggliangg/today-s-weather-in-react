@@ -7,6 +7,15 @@ const BASE_URL =
     ? '/api/'
     : import.meta.env.VITE_OPEN_WEATHER_API_BASE_URL;
 
+// Validate required environment variables
+if (!API_KEY) {
+  throw new Error('VITE_OPEN_WEATHER_API_KEY environment variable is required');
+}
+
+if (ENVIRONMENT !== 'development' && !BASE_URL) {
+  throw new Error('VITE_OPEN_WEATHER_API_BASE_URL environment variable is required for production');
+}
+
 export const ApiClient = {
   async get<T>(path: string, params: Map<string, string>): Promise<T> {
     let myUrlWithParams: string | URL;

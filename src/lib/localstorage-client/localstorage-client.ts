@@ -18,7 +18,7 @@ export const LocalstorageClient = {
     } catch (e) {
       toast.error(`Error getting data for ${key}`);
       console.log(e);
+      return null;
     }
-    return null;
   },
 };

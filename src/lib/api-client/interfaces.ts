@@ -2,7 +2,7 @@ export interface CoordinatesResponse {
   name: string;
   lat: number;
   lon: number;
-  country: 'string';
+  country: string;
 }
 
 export interface CoordinatesResult {

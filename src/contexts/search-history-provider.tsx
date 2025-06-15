@@ -53,7 +53,11 @@ export const SearchHistoryProvider = ({ children }: PropsWithChildren) => {
 
   const removeWeatherResult = (result: WeatherResult) => {
     setSearchHistory((prevHistory) => {
-      const updatedHistory = prevHistory.filter((item) => item !== result);
+      const updatedHistory = prevHistory.filter((item) => 
+        !(item.city === result.city && 
+          item.country === result.country && 
+          item.timestamp === result.timestamp)
+      );
 
       LocalstorageClient.setData<WeatherResult[]>({
         key: SEARCH_HISTORY_KEY,
