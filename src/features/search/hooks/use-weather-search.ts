@@ -30,6 +30,7 @@ export const useWeatherSearch = () => {
       });
 
       const weatherResult = await getWeatherInfo({ lon, lat });
+      console.log(weatherResult);
       setIsLoading(false);
       setCurrentWeatherData(weatherResult);
     } catch (err) {

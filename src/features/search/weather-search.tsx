@@ -1,22 +1,9 @@
 import { Label } from '@/components/ui/label.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Button } from '@/components/ui/button.tsx';
-import { Check, ChevronsUpDown, Search, Trash } from 'lucide-react';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@/components/ui/command.tsx';
-import { cn } from '@/lib/utils.ts';
+import { Search, Trash } from 'lucide-react';
 import { useWeatherSearch } from '@/features/search/hooks/use-weather-search.ts';
+import { CountrySelector } from '@/features/search/components/country-selector.tsx';
 
 const countries = [
   {
@@ -54,8 +41,8 @@ const WeatherSearch = () => {
   } = useWeatherSearch();
 
   return (
-    <div className='flex items-end gap-3'>
-      <div className='grid w-full max-w-sm items-center gap-3'>
+    <div className='flex flex-wrap items-end gap-3'>
+      <div className='grid w-full md:w-auto md:max-w-sm items-center gap-3'>
         <Label htmlFor='city'>City</Label>
         <Input
           type='text'
@@ -66,69 +53,35 @@ const WeatherSearch = () => {
         />
       </div>
 
-      <div className='grid w-full max-w-sm items-center gap-3'>
+      <div className='grid w-full md:w-auto md:max-w-sm items-center gap-3'>
         <Label htmlFor='country'>Country</Label>
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              id='country'
-              variant='outline'
-              role='combobox'
-              aria-expanded={open}
-              className='w-[200px] justify-between font-normal text-muted-foreground'
-            >
-              {country
-                ? countries.find((framework) => framework.value === country)
-                    ?.label
-                : 'Select a country...'}
-              <ChevronsUpDown className='opacity-50' />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className='w-[200px] p-0'>
-            <Command>
-              <CommandInput placeholder='Search framework...' className='h-9' />
-              <CommandList>
-                <CommandEmpty>No framework found.</CommandEmpty>
-                <CommandGroup>
-                  {countries.map((framework) => (
-                    <CommandItem
-                      key={framework.value}
-                      value={framework.value}
-                      onSelect={(currentValue) => {
-                        setCountry(
-                          currentValue === country ? '' : currentValue,
-                        );
-                        setOpen(false);
-                      }}
-                    >
-                      {framework.label}
-                      <Check
-                        className={cn(
-                          'ml-auto',
-                          country === framework.value
-                            ? 'opacity-100'
-                            : 'opacity-0',
-                        )}
-                      />
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              </CommandList>
-            </Command>
-          </PopoverContent>
-        </Popover>
+        <CountrySelector
+          open={open}
+          setOpen={setOpen}
+          selectedCountry={country}
+          setSelectedCountry={setCountry}
+          countries={countries}
+          id='country'
+        />
       </div>
-      <Button
-        onClick={handleSearch}
-        size='icon'
-        variant='outline'
-        disabled={isLoading || !city}
-      >
-        <Search />
-      </Button>
-      <Button onClick={handleClear} size='icon' variant='destructive'>
-        <Trash />
-      </Button>
+      <div className='flex w-full md:w-auto gap-3 mt-3 md:mt-0'>
+        <Button
+          onClick={handleSearch}
+          size='icon'
+          variant='outline'
+          disabled={isLoading || !city}
+        >
+          <Search />
+        </Button>
+        <Button
+          onClick={handleClear}
+          size='icon'
+          variant='destructive'
+          disabled={isLoading || !city || !country}
+        >
+          <Trash />
+        </Button>
+      </div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ export const getWeatherInfo = async ({
   lat: number;
 }): Promise<WeatherResult> => {
   const {
-    weather: { main, description, icon },
+    weather,
     main: { temp, feels_like, temp_min, temp_max, pressure, humidity },
     sys: { country },
     dt,
@@ -36,9 +36,9 @@ export const getWeatherInfo = async ({
     humidity: humidity,
     country: country,
     city: name,
-    weather_group: main,
-    description: description,
-    weather_icon: icon,
+    weather_group: weather[0].main,
+    description: weather[0].description,
+    weather_icon: weather[0].icon,
     timestamp: dt,
   };
 };
