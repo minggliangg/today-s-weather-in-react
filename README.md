@@ -15,11 +15,16 @@ A modern, responsive web application that allows users to check the current weat
 ## Screenshots
 
 ### Desktop View
-![Desktop View](path/to/desktop-screenshot.png)
+
+![Screenshot 2025-06-16 at 3 51 12 AM](https://github.com/user-attachments/assets/0e5f4179-9cf5-4a24-9c4e-3972a219c75c)
+
 *Desktop view of Today's Weather application*
 
+
 ### Mobile View
-![Mobile View](path/to/mobile-screenshot.png)
+
+![Screenshot 2025-06-16 at 3 54 51 AM](https://github.com/user-attachments/assets/ba79f461-abfd-4e38-92db-19c95c7467c1)
+
 *Mobile view of Today's Weather application*
 
 ## Technologies Used
