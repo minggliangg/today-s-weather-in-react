@@ -1,5 +1,5 @@
 import './App.css';
-import WeatherSearch from '@/features/weather-search/weather-search.tsx';
+import WeatherSearch from '@/features/search/weather-search.tsx';
 import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
 
 const App = () => {

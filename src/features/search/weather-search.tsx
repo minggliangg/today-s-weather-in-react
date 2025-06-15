@@ -16,7 +16,7 @@ import {
   CommandList,
 } from '@/components/ui/command.tsx';
 import { cn } from '@/lib/utils.ts';
-import { useWeatherSearch } from '@/features/weather-search/hooks/use-weather-search.ts';
+import { useWeatherSearch } from '@/features/search/hooks/use-weather-search.ts';
 
 const countries = [
   {
