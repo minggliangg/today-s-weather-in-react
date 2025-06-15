@@ -42,7 +42,6 @@ export interface WeatherResult {
   humidity: number;
   country: string;
   city: string;
-  weather_group: string;
   description: string;
   weather_icon: string;
   timestamp: number;

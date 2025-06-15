@@ -36,7 +36,6 @@ export const getWeatherInfo = async ({
     humidity: humidity,
     country: country,
     city: name,
-    weather_group: weather[0].main,
     description: weather[0].description,
     weather_icon: weather[0].icon,
     timestamp: dt,
