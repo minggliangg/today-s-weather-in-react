@@ -13,11 +13,11 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Toaster />
     <AppConstantsProvider>
-      <SearchHistoryProvider>
-        <CurrentWeatherProvider>
+      <CurrentWeatherProvider>
+        <SearchHistoryProvider>
           <App />
-        </CurrentWeatherProvider>
-      </SearchHistoryProvider>
+        </SearchHistoryProvider>
+      </CurrentWeatherProvider>
     </AppConstantsProvider>
   </StrictMode>,
 );

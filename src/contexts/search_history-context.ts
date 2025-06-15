@@ -6,6 +6,7 @@ export interface SearchHistoryContextType {
   addWeatherResult: (result: WeatherResult) => void;
   clearSearchHistory: () => void;
   removeWeatherResult: (result: WeatherResult) => void;
+  searchAgain: (entry: WeatherResult) => Promise<void>;
 }
 
 export const SearchHistoryContext = createContext<

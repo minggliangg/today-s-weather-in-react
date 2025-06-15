@@ -9,13 +9,13 @@ import {
 import { Button } from '@/components/ui/button.tsx';
 import { Search, Trash } from 'lucide-react';
 import { useSearchHistoryContext } from '@/hooks/use-search-history-context.ts';
-import { useWeatherSearch } from '@/features/weather-search/hooks/use-weather-search.ts';
 import { epochToDateLocaleString } from '@/lib/utils.ts';
+import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
 
 export const SearchHistory = () => {
-  const { searchHistory, clearSearchHistory, removeWeatherResult } =
+  const { searchHistory, clearSearchHistory, removeWeatherResult, searchAgain } =
     useSearchHistoryContext();
-  const { setCity, setCountry, isLoading, handleSearch } = useWeatherSearch();
+  const { isLoading } = useCurrentWeatherContext();
 
   return (
     <Card className={'w-full'}>
@@ -54,11 +54,7 @@ export const SearchHistory = () => {
                     {epochToDateLocaleString(entry.timestamp)}
                   </span>
                   <Button
-                    onClick={async () => {
-                      setCity(entry.city);
-                      setCountry(entry.country);
-                      await handleSearch();
-                    }}
+                    onClick={() => searchAgain(entry)}
                     title={`Search for entry ${index + 1} again`}
                     size='icon'
                     disabled={isLoading}

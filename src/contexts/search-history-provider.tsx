@@ -5,10 +5,16 @@ import {
   type SearchHistoryContextType,
 } from '@/contexts/search_history-context.ts';
 import { LocalstorageClient } from '@/lib/localstorage-client/localstorage-client.ts';
+import { getCoordinatesByLocationName, getWeatherInfo } from '@/lib/api-client/api.ts';
+import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
+import { toast } from 'sonner';
+import { InvalidLocationError, NetworkError } from '@/common/custom-errors.ts';
 
 const SEARCH_HISTORY_KEY = 'search-history';
 
 export const SearchHistoryProvider = ({ children }: PropsWithChildren) => {
+  const { setCurrentWeatherData, setIsLoading } = useCurrentWeatherContext();
+
   const [searchHistory, setSearchHistory] = useState<WeatherResult[]>(
     () =>
       LocalstorageClient.getData<WeatherResult[]>({
@@ -55,12 +61,39 @@ export const SearchHistoryProvider = ({ children }: PropsWithChildren) => {
     });
   };
 
+  const searchAgain = async (entry: WeatherResult) => {
+    setIsLoading(true);
+
+    try {
+      const countryCode = entry.country;
+      const { lon, lat } = await getCoordinatesByLocationName({
+        city: entry.city,
+        countryCode,
+      });
+
+      const weatherResult = await getWeatherInfo({ lon, lat });
+      setCurrentWeatherData(weatherResult);
+      addWeatherResult(weatherResult);
+    } catch (err) {
+      if (err instanceof NetworkError) {
+        toast.error(`Network error: ${err.statusCode} ${err.message}`);
+      } else if (err instanceof InvalidLocationError) {
+        toast.error(`Invalid location: ${err.message}`);
+      } else if (err instanceof Error) {
+        toast.error(`An unknown error occurred: ${err.message}`);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Create the context value
   const value: SearchHistoryContextType = {
     searchHistory,
     addWeatherResult,
     clearSearchHistory,
     removeWeatherResult,
+    searchAgain,
   };
 
   return (
