@@ -1,5 +1,5 @@
 import './App.css';
-import WeatherSearch from '@/features/search/weather-search.tsx';
+import WeatherSearch from '@/features/weather-search/weather-search.tsx';
 import { CurrentDisplay } from '@/features/current-weather-display/current-display.tsx';
 
 const App = () => {
