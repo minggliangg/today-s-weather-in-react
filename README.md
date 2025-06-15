@@ -12,12 +12,23 @@ A modern, responsive web application that allows users to check the current weat
 - **Dark/Light Mode**: Toggle between dark and light themes for comfortable viewing in any environment
 - **Responsive Design**: Works seamlessly on both desktop and mobile devices
 
+## Screenshots
+
+### Desktop View
+![Desktop View](path/to/desktop-screenshot.png)
+*Desktop view of Today's Weather application*
+
+### Mobile View
+![Mobile View](path/to/mobile-screenshot.png)
+*Mobile view of Today's Weather application*
+
 ## Technologies Used
 
 - **React 19**: For building the user interface
 - **TypeScript**: For type safety and better developer experience
 - **Vite**: For fast development and optimized production builds
 - **Tailwind CSS**: For styling and responsive design
+- **shadcn/ui**: For accessible and customizable UI components
 - **Context API**: For state management
 - **OpenWeatherMap API**: For weather data
 - **Local Storage**: For persisting search history
