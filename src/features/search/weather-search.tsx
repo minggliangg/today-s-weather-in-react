@@ -4,8 +4,13 @@ import { Button } from '@/components/ui/button.tsx';
 import { Search, Trash } from 'lucide-react';
 import { useWeatherSearch } from '@/features/search/hooks/use-weather-search.ts';
 import { CountrySelector } from '@/features/search/components/country-selector.tsx';
+import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
+import { useEffect } from 'react';
+import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
 
 const WeatherSearch = () => {
+  const { getLabelFromCountryCode } = useAppConstantsContext();
+  const { currentWeatherData } = useCurrentWeatherContext();
   const {
     city,
     setCity,
@@ -19,12 +24,19 @@ const WeatherSearch = () => {
     handleClear,
   } = useWeatherSearch();
 
+  useEffect(() => {
+    if (currentWeatherData) {
+      setCity(currentWeatherData.city);
+      setCountry(getLabelFromCountryCode(currentWeatherData.country));
+    }
+  }, [currentWeatherData]);
+
   const errorMessage = error?.message;
 
   return (
     <div className='flex flex-wrap items-end gap-3'>
       <div className='grid w-full md:w-auto md:max-w-sm items-center gap-1'>
-        <Label htmlFor='city'>City*</Label>
+        <Label htmlFor='city'>City *</Label>
         <Input
           required
           type='text'
@@ -50,7 +62,7 @@ const WeatherSearch = () => {
         </p>
       </div>
       <div className='grid w-full md:w-auto md:max-w-sm items-center gap-1'>
-        <div className='flex w-full md:w-auto gap-3 mt-3 md:mt-0'>
+        <div className='flex w-full md:w-auto gap-3 mt-3 md:mt-0 justify-end'>
           <Button
             onClick={handleSearch}
             size='icon'
@@ -63,7 +75,7 @@ const WeatherSearch = () => {
             onClick={handleClear}
             size='icon'
             variant='destructive'
-            disabled={isLoading || !city || !country}
+            disabled={isLoading || (!country && !city)}
           >
             <Trash />
           </Button>

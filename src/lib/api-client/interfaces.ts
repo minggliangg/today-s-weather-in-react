@@ -51,3 +51,8 @@ export interface LabelAndValue {
   label: string;
   value: string;
 }
+
+export interface RandomCondition {
+  icon: string;
+  description: string;
+}

@@ -48,21 +48,19 @@ export const useWeatherSearch = () => {
   const handleClear = () => {
     setCity('');
     setCountry('');
+    setCurrentWeatherData(null);
     setError(null);
   };
 
   return {
-    // Form state
     city,
     setCity,
     country,
     setCountry,
     open,
     setOpen,
-    // Results state
     isLoading: isPerformingSearch,
     error,
-    // Actions
     handleSearch,
     handleClear,
   };

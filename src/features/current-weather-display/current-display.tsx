@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from '@/components/ui/card.tsx';
 import { toTitleCase } from '@/lib/utils.ts';
+import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
 
 const units = '°C';
 
@@ -21,7 +22,11 @@ export const CurrentDisplay = () => {
 };
 
 const CurrentDisplayContent = () => {
+  const { getRandomWeatherCondition } = useAppConstantsContext();
   const { currentWeatherData, isLoading } = useCurrentWeatherContext();
+
+  const { icon, description: randomDescription } = getRandomWeatherCondition();
+
   if (!currentWeatherData || (isLoading && !currentWeatherData))
     return (
       <CardContent className='h-[296px]'>
@@ -31,11 +36,11 @@ const CurrentDisplayContent = () => {
           </div>
           <div className='flex flex-col gap-1 items-center'>
             <img
-              src={`https://openweathermap.org/img/wn/01d@4x.png`}
-              alt={'description'}
+              src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
+              alt={randomDescription}
             />
             <p className='text-gray-400'>
-              Somewhere there are {toTitleCase('description')}
+              Somewhere there are {randomDescription}
             </p>
           </div>
         </div>

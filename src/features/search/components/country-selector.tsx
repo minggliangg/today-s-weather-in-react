@@ -100,7 +100,7 @@ export const CountrySelector = ({
             variant='outline'
             role='combobox'
             aria-expanded={open}
-            className='w-full md:w-[200px] justify-between font-normal text-muted-foreground'
+            className={`w-full md:w-[200px] justify-between font-normal ${selectedCountry ? 'text-foreground' : 'text-muted-foreground'}`}
           >
             <span className='truncate'>
               {selectedCountry
@@ -132,7 +132,7 @@ export const CountrySelector = ({
           variant='outline'
           role='combobox'
           aria-expanded={open}
-          className='w-full md:w-[200px] justify-between font-normal text-muted-foreground'
+          className={`w-full md:w-[200px] justify-between font-normal ${selectedCountry ? 'text-foreground' : 'text-muted-foreground'}`}
         >
           {selectedCountry
             ? countriesForComboBox.find(

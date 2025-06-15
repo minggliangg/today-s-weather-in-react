@@ -1,0 +1,74 @@
+[
+  {
+    "icon": "01d",
+    "description": "clear sky"
+  },
+  {
+    "icon": "01n",
+    "description": "clear sky"
+  },
+  {
+    "icon": "02d",
+    "description": "few clouds"
+  },
+  {
+    "icon": "02n",
+    "description": "few clouds"
+  },
+  {
+    "icon": "03d",
+    "description": "scattered clouds"
+  },
+  {
+    "icon": "03n",
+    "description": "scattered clouds"
+  },
+  {
+    "icon": "04d",
+    "description": "broken clouds"
+  },
+  {
+    "icon": "04n",
+    "description": "broken clouds"
+  },
+  {
+    "icon": "09d",
+    "description": "shower rain"
+  },
+  {
+    "icon": "09n",
+    "description": "shower rain"
+  },
+  {
+    "icon": "10d",
+    "description": "rain"
+  },
+  {
+    "icon": "10n",
+    "description": "rain"
+  },
+  {
+    "icon": "11d",
+    "description": "thunderstorm"
+  },
+  {
+    "icon": "11n",
+    "description": "thunderstorm"
+  },
+  {
+    "icon": "13d",
+    "description": "snow"
+  },
+  {
+    "icon": "13n",
+    "description": "snow"
+  },
+  {
+    "icon": "50d",
+    "description": "mist"
+  },
+  {
+    "icon": "50n",
+    "description": "mist"
+  }
+]

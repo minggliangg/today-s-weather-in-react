@@ -5,6 +5,7 @@ import { CurrentDisplay } from '@/features/current-weather-display/current-displ
 const App = () => {
   return (
     <div className={'flex flex-col items-center justify-center gap-4'}>
+      <h1 className='text-3xl font-bold mb-8'>Today's Weather</h1>
       <WeatherSearch />
       <CurrentDisplay />
     </div>
