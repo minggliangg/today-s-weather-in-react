@@ -1,8 +1,4 @@
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover.tsx';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import {
@@ -11,14 +7,17 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList,
+  CommandList
 } from '@/components/ui/command.tsx';
 import { cn } from '@/lib/utils.ts';
 import { useMediaQuery } from '@/hooks/use-media-query.ts';
 import {
   Drawer,
   DrawerContent,
-  DrawerTrigger,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger
 } from '@/components/ui/drawer.tsx';
 import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
 
@@ -142,6 +141,10 @@ export const CountrySelector = ({
         </Button>
       </DrawerTrigger>
       <DrawerContent>
+        <DrawerHeader className="sr-only">
+          <DrawerTitle>Select a Country</DrawerTitle>
+          <DrawerDescription>Select a country from the list</DrawerDescription>
+        </DrawerHeader>
         <div className='mt-4 border-t'>
           <CountrySelectorContent
             countries={countriesForComboBox}
