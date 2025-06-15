@@ -20,16 +20,14 @@ import {
   DrawerContent,
   DrawerTrigger,
 } from '@/components/ui/drawer.tsx';
+import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
 
 interface CountrySelectorProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   selectedCountry: string;
   setSelectedCountry: (country: string) => void;
-  countries: {
-    value: string;
-    label: string;
-  }[];
+
   id: string;
 }
 
@@ -44,7 +42,7 @@ interface CountrySelectorContentProps {
   open: boolean;
 }
 
-const ContrySelectorContent = ({
+const CountrySelectorContent = ({
   countries,
   selectedCountry,
   setSelectedCountry,
@@ -87,11 +85,11 @@ const ContrySelectorContent = ({
 export const CountrySelector = ({
   open,
   setOpen,
-  countries,
   selectedCountry,
   setSelectedCountry,
   id,
 }: CountrySelectorProps) => {
+  const { countriesForComboBox } = useAppConstantsContext();
   const isDesktop = useMediaQuery('(min-width: 768px)');
   if (isDesktop) {
     return (
@@ -106,16 +104,17 @@ export const CountrySelector = ({
           >
             <span className='truncate'>
               {selectedCountry
-                ? countries.find((country) => country.value === selectedCountry)
-                    ?.label
+                ? countriesForComboBox.find(
+                    (country) => country.value === selectedCountry,
+                  )?.label
                 : 'Select a country...'}
             </span>
             <ChevronsUpDown className='opacity-50' />
           </Button>
         </PopoverTrigger>
         <PopoverContent className='w-[200px] p-0'>
-          <ContrySelectorContent
-            countries={countries}
+          <CountrySelectorContent
+            countries={countriesForComboBox}
             selectedCountry={selectedCountry}
             setSelectedCountry={setSelectedCountry}
             setOpen={setOpen}
@@ -136,15 +135,16 @@ export const CountrySelector = ({
           className='w-full md:w-[200px] justify-between font-normal text-muted-foreground'
         >
           {selectedCountry
-            ? countries.find((country) => country.value === selectedCountry)
-                ?.label
+            ? countriesForComboBox.find(
+                (country) => country.value === selectedCountry,
+              )?.label
             : 'Select a country...'}
         </Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className='mt-4 border-t'>
-          <ContrySelectorContent
-            countries={countries}
+          <CountrySelectorContent
+            countries={countriesForComboBox}
             selectedCountry={selectedCountry}
             setSelectedCountry={setSelectedCountry}
             setOpen={setOpen}

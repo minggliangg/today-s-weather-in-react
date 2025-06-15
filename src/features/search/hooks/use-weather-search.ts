@@ -4,8 +4,10 @@ import {
   getWeatherInfo,
 } from '@/lib/api-client/api.ts';
 import { useCurrentWeatherContext } from '@/hooks/use-current-weather-context.ts';
+import { useAppConstantsContext } from '@/hooks/use-app-constants-context.ts';
 
 export const useWeatherSearch = () => {
+  const { getCountryCodeFromLabel } = useAppConstantsContext();
   const { setIsLoading, setCurrentWeatherData } = useCurrentWeatherContext();
   // Form state
   const [city, setCity] = useState('');
@@ -24,21 +26,21 @@ export const useWeatherSearch = () => {
     setError(null);
 
     try {
+      const countryCode = getCountryCodeFromLabel(country);
       const { lon, lat } = await getCoordinatesByLocationName({
         city,
-        country,
+        countryCode,
       });
 
       const weatherResult = await getWeatherInfo({ lon, lat });
-      console.log(weatherResult);
-      setIsLoading(false);
+
       setCurrentWeatherData(weatherResult);
     } catch (err) {
       setError(
         err instanceof Error ? err : new Error('An unknown error occurred'),
       );
-      console.error(err);
     } finally {
+      setIsLoading(false);
       setIsPerformingSearch(false);
     }
   };

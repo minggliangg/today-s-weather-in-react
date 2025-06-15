@@ -44,18 +44,22 @@ export const getWeatherInfo = async ({
 
 export const getCoordinatesByLocationName = async ({
   city,
-  country,
+  countryCode,
 }: {
   city: string;
-  country?: string;
+  countryCode?: string;
 }): Promise<CoordinatesResult> => {
   const response = await ApiClient.get<Array<CoordinatesResponse>>(
     'geo/1.0/direct',
     new Map([
-      ['q', `${city},,${country}`],
+      ['q', `${city},,${countryCode}`],
       ['limit', '1'],
     ]),
   );
+
+  if (response.length === 0) {
+    throw new Error('Invalid location entered');
+  }
 
   return {
     lat: response[0].lat,

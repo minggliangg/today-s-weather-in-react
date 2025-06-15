@@ -46,3 +46,8 @@ export interface WeatherResult {
   weather_icon: string;
   timestamp: number;
 }
+
+export interface LabelAndValue {
+  label: string;
+  value: string;
+}
