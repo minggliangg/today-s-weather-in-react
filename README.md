@@ -1,14 +1,16 @@
 # Today's Weather
 
-A modern, responsive web application that allows users to check the current weather conditions for any location around the world. Built with React, TypeScript, and Vite.
+A modern, responsive web application that allows users to check the current weather conditions for any location around
+the world. Built with React, TypeScript, and Vite.
 
 ![Today's Weather App](https://openweathermap.org/img/wn/02d@4x.png)
 
 ## Features
 
 - **Weather Search**: Search for weather information by city and country
-- **Current Weather Display**: View detailed current weather information including temperature, feels like temperature, humidity, and pressure
-- **Search History**: Keep track of your recent searches (up to 20) and easily search for them again
+- **Current Weather Display**: View detailed current weather information including temperature, feels like temperature,
+  humidity, and pressure
+- **Search History**: Keep track of your recent searches (up to 20) and search for them again
 - **Dark/Light Mode**: Toggle between dark and light themes for comfortable viewing in any environment
 - **Responsive Design**: Works seamlessly on both desktop and mobile devices
 
@@ -19,7 +21,6 @@ A modern, responsive web application that allows users to check the current weat
 ![Screenshot 2025-06-16 at 3 51 12 AM](https://github.com/user-attachments/assets/0e5f4179-9cf5-4a24-9c4e-3972a219c75c)
 
 *Desktop view of Today's Weather application*
-
 
 ### Mobile View
 
@@ -60,14 +61,23 @@ A modern, responsive web application that allows users to check the current weat
    yarn
    ```
 
-3. Start the development server:
+3. Set up environment variables:
+    - Copy the example environment file:
+      ```bash
+      cp .env.example .env
+      ```
+    - Edit the `.env` file and add your OpenWeatherMap API key
+        - You can get a free API key by signing up at [OpenWeatherMap](https://openweathermap.org/api)
+        - Replace `your_openweathermap_api_key_here` with your actual API key
+
+4. Start the development server:
    ```bash
    npm run dev
    # or
    yarn dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+5. Open your browser and navigate to `http://localhost:5173`
 
 ## Building for Production
 
@@ -91,9 +101,9 @@ yarn preview
 
 - `src/components`: Reusable UI components
 - `src/features`: Feature-specific components
-  - `current-weather-display`: Components for displaying current weather
-  - `search-history`: Components for managing and displaying search history
-  - `weather-search`: Components for searching weather by location
+    - `current-weather-display`: Components for displaying current weather
+    - `search-history`: Components for managing and displaying search history
+    - `weather-search`: Components for searching weather by location
 - `src/contexts`: React contexts for state management
 - `src/hooks`: Custom React hooks
 - `src/lib`: Utility functions and API clients
@@ -101,7 +111,7 @@ yarn preview
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License—see the LICENSE file for details.
 
 ## Acknowledgements
 
